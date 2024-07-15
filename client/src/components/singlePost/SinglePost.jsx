@@ -4,8 +4,11 @@ import { useLocation } from 'react-router'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/Context'
+import { useNavigate } from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const SinglePost = () => {
+    const navigate = useNavigate();
     const { user } = useContext(Context)
     // const PF = "https://eventsandnewsapi.onrender.com/images/"
     const location = useLocation()
@@ -17,7 +20,7 @@ const SinglePost = () => {
 
     useEffect(() => {
         const getPost = async () => {
-            const res = await axios.get("https://eventsandnewsapi.onrender.com/api/posts/" + path);
+            const res = await axios.get("https://ean-be-updated.vercel.app/api/posts/" + path);
             setPost(res.data)
             setTitle(res.data.title);
             setDesc(res.data.desc);
@@ -27,7 +30,7 @@ const SinglePost = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`https://eventsandnewsapi.onrender.com/api/posts/${post._id}`, {
+            await axios.delete(`https://ean-be-updated.vercel.app/api/posts/${post._id}`, {
                 data: { username: user.username }
             });
             window.location.replace("/");
@@ -35,7 +38,7 @@ const SinglePost = () => {
     }
     const handleUpdate = async () => {
         try {
-            await axios.put(`https://eventsandnewsapi.onrender.com/api/posts/${post._id}`, {
+            await axios.put(`https://ean-be-updated.vercel.app/api/posts/${post._id}`, {
                 username: user.username, title, desc
             });
             setUpdateMode(false)
@@ -46,6 +49,7 @@ const SinglePost = () => {
     return (
         <>
             <div className='singlePost'>
+                <button onClick={() => navigate(-1)} className='backbutton'><IoMdArrowRoundBack className='arrow'/></button>
                 <div className="singlePostWrapper">
                     {post.photo && (
                         <img src={post.photo} alt="" className="singlePostImg" />

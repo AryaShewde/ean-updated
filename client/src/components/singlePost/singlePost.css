@@ -12,16 +12,27 @@
     flex-direction: column;
 }
 
+.backbutton{
+    margin: 0px 26%;
+    border: none;
+    background-color: white;
+}
+.arrow{
+    font-size: 34px;
+    color: #6e6d6d;
+    cursor: pointer;
+}
+
 .singlePostImg {
-    width: 70%;
-    height: 300px;
+    width: 50%;
+    height: auto;
     border-radius: 5px;
     object-fit: cover;
 }
 
 .singlePostTitle {
     text-align: center;
-    width: 70%;
+    width: 50%;
     margin: 10px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 28px;
@@ -29,6 +40,7 @@
 
 .singlePostTitleInput {
     text-align: center;
+    width: 50%;
     margin: 10px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 28px;
@@ -69,7 +81,7 @@
 
 .singlePostDesc {
     color: #666;
-    width: 70%;
+    width: 50%;
     font-size: 18px;
     line-height: 25px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -77,6 +89,7 @@
 
 .singlePostDescInput {
     border: none;
+    width: 50%;
     color: #666;
     font-size: 18px;
     line-height: 25px;
@@ -121,6 +134,7 @@
     .singlePostTitle {
         display: flex;
         width: 100%;
+        font-size: 17px;
         justify-content: center;
         align-items: center;
         flex-direction: column-reverse;
@@ -136,8 +150,17 @@
     }
     .singlePostTitleInput{
         font-size: 15px;
+        width: 100%;
+    }
+    .singlePostDescInput{
+        font-size: 15px;
+        width: 100%;
     }
     .singlePostDesc{
         width: 95%;
+        font-size: 12px;
+    }
+    .backbutton{
+        margin: 0px 3%;
     }
 }

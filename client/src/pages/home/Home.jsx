@@ -20,7 +20,7 @@ const Home = () => {
       //   }
       // });
       // await res.json();
-      const res = await axios.get("https://eventsandnewsapi.onrender.com/api/posts" + search)
+      const res = await axios.get("https://ean-be-updated.vercel.app/api/posts" + search)
       setPosts(res.data)
       setLoading(false);
     }

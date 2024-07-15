@@ -12,7 +12,6 @@ const Settings = () => {
 
     const { user, dispatch } = useContext(Context);
     // const PF = "https://eventsandnewsapi.onrender.com/images/"
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({ type: "UPDATE_START" })
@@ -30,11 +29,11 @@ const Settings = () => {
             data.append("userId", user._id);
             // updatedUser.profilePic = filename;
             try {
-                await axios.put("http://localhost:5000/api/uploading/" + user._id, data);
+                await axios.put("https://ean-be-updated.vercel.app/api/uploading/" + user._id, data);
             } catch (error) { }
         }
         try {
-            const res = await axios.put('http://localhost:5000/api/users/' + user._id, updatedUser);
+            const res = await axios.put('https://ean-be-updated.vercel.app/api/users/' + user._id, updatedUser);
             setSuccess(true);
             dispatch({ type: "UPDATE_SUCCESS", payload: res.data })
             window.location.replace("/");
@@ -55,8 +54,7 @@ const Settings = () => {
                     <form className="settingsForm" onSubmit={handleSubmit}>
                         <label>Profile Picture</label>
                         <div className="settingsPP">
-                            <img src={file ? URL.createObjectURL(file) :  user.profilePic} alt="" />
-
+                                <img src={file ? URL.createObjectURL(file) : user.profilePic} alt=""/>
                             <label htmlFor="fileInput">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="settingsPPIcon bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -86,7 +84,7 @@ const Settings = () => {
                             required
                         />
                         <label>Password</label>
-                        <input type="password" onChange={e => setPassword(e.target.value)} required/>
+                        <input type="password" onChange={e => setPassword(e.target.value)} required />
                         <button className="settingsSubmit" type="submit">Update</button>
                         {success && <span style={{ color: "green", marginTop: "20px", display: "flex", alignSelf: "center" }}>Profile has been updated...</span>}
                     </form>

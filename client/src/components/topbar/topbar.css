@@ -38,6 +38,7 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 3px 3px 6px #858484;
     cursor: pointer;
 }
 .topList{

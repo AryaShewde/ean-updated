@@ -18,7 +18,7 @@ const Login = () => {
         try {
 
             
-            const res = await axios.post('https://eventsandnewsapi.onrender.com/api/auth/login', {
+            const res = await axios.post('https://ean-be-updated.vercel.app/api/auth/login', {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             })

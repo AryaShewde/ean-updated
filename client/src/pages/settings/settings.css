@@ -14,8 +14,10 @@
 .settingsUpdateTitle{
     font-size: 30px;
     margin-bottom: 20px;
-    color: lightcoral;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    text-shadow: 0px 0px 2px;
+    color: #665e5e;
+    font-family: math;
 }
 .settingsDeleteTitle{
     color: red;

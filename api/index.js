@@ -10,6 +10,7 @@ const multer = require("multer");
 const cors = require('cors')
 const path = require('path');
 const router = require("express").Router();
+const sharp = require('sharp');
 
 require('dotenv').config()
 app.use(cors())
@@ -43,7 +44,24 @@ const User = require("./models/User.js");
 
 app.post("/api/upload", upload.single("file"), async (req, res) => {
   try {
-    const imageBuffer = req.file.buffer;
+    const image = req.file
+    let imageBuffer = image.buffer;
+    const sizeInKB = image.size / 1024;
+    const maxSizeInKB = 424; // 0.4MB
+    if (sizeInKB > maxSizeInKB) {
+      try {
+        imageBuffer = await sharp(imageBuffer)
+          .resize({ width: 1024 }) // Resize to a maximum width of 1024px (optional)
+          .jpeg({ quality: 70 }) // Adjust quality to reduce file size
+          .toBuffer();
+
+        // Recheck the size after compression
+        const newSizeInKB = imageBuffer.byteLength / 1024;
+        console.log(`Compressed image size: ${newSizeInKB.toFixed(2)} KB`);
+      } catch (error) {
+        return res.status(500).send('Error processing image.');
+      }
+    }
     const { username } = req.body;
     const { title } = req.body;
     const { desc } = req.body;
@@ -73,7 +91,24 @@ app.put("/api/uploading/:id", upload.single("file"), async (req, res) => {
   // const { password } = req.body;
   if (userId === req.params.id) {
     try {
-      const imageBuffer = req.file.buffer;
+      const image = req.file
+      let imageBuffer = image.buffer;
+      const sizeInKB = image.size / 1024;
+      const maxSizeInKB = 424; // 0.4MB
+      if (sizeInKB > maxSizeInKB) {
+        try {
+          imageBuffer = await sharp(imageBuffer)
+            .resize({ width: 1024 }) // Resize to a maximum width of 1024px (optional)
+            .jpeg({ quality: 70 }) // Adjust quality to reduce file size
+            .toBuffer();
+
+          // Recheck the size after compression
+          const newSizeInKB = imageBuffer.byteLength / 1024;
+          console.log(`Compressed image size: ${newSizeInKB.toFixed(2)} KB`);
+        } catch (error) {
+          return res.status(500).send('Error processing image.');
+        }
+      }
       const imageBase64 = imageBuffer.toString('base64');
       const imageUrl = `data:${req.file.mimetype};base64,${imageBase64}`;
 

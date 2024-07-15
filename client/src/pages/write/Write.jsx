@@ -26,14 +26,14 @@ const Write = () => {
             data.append("desc", desc);
             // newPost.photo = filename;
             try {
-                await axios.post("http://localhost:5000/api/upload", data);
+                await axios.post("https://ean-be-updated.vercel.app/api/upload", data);
             } catch (error) {
 
             }
         }
         else{
             try {
-                await axios.post('http://localhost:5000/api/posts', newPost);
+                await axios.post('https://ean-be-updated.vercel.app/api/posts', newPost);
                 window.location.replace("/");
             } catch (error) {
                 

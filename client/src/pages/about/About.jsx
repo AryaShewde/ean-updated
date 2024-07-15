@@ -6,7 +6,7 @@ import { Context } from '../../context/Context'
 
 const About = () => {
     const { user } = useContext(Context);
-    const PF = "https://eventsandnewsapi.onrender.com/images/"
+    // const PF = "https://eventsandnewsapi.onrender.com/images/"
     const [cats, setCats] = useState([])
     useEffect(() => {
         const getCats = async () => {
@@ -17,7 +17,7 @@ const About = () => {
             //     }
             // });
             // await res.json();
-            const res = await axios.get("https://eventsandnewsapi.onrender.com/api/category")
+            const res = await axios.get("https://ean-be-updated.vercel.app/api/category")
             setCats(res.data)
         };
         getCats();
@@ -29,7 +29,7 @@ const About = () => {
                     <span className='sidebarTitle'>About Me</span>
                     {
                         user ? (
-                            <img className='topabout' src={PF + user.profilePic} alt="" />
+                            <img className='topabout' src={user.profilePic} alt="" />
                         ) : (<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDJxpGqOGix5cj6scskZqfRExzdyUhVDQygA&usqp=CAU" alt="" />)
                     }
 

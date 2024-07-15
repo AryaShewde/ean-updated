@@ -13,7 +13,7 @@ const Register = () => {
         e.preventDefault();
         setError(false)
         try {
-            const res = await axios.post("https://eventsandnewsapi.onrender.com/api/auth/register", {
+            const res = await axios.post("https://ean-be-updated.vercel.app/api/auth/register", {
                 username,
                 email,
                 password

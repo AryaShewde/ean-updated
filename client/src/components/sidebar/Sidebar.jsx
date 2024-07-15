@@ -6,7 +6,6 @@ import { Context } from '../../context/Context'
 
 const Sidebar = () => {
   const { user } = useContext(Context);
-  const PF = "https://eventsandnewsapi.onrender.com/images/"
   const [cats, setCats] = useState([])
   useEffect(() => {
     const getCats = async () => {
@@ -17,7 +16,7 @@ const Sidebar = () => {
       //   }
       // });
       // await res.json();
-      const res = await axios.get("https://eventsandnewsapi.onrender.com/api/category")
+      const res = await axios.get("https://ean-be-updated.vercel.app/api/category")
       setCats(res.data)
     };
     getCats();
@@ -29,7 +28,7 @@ const Sidebar = () => {
           <span className='sidebarTitle'>About Me</span>
           {
             user ? (
-              <img className='topabout' src={PF + user.profilePic} alt="" />
+              <img className='topabout' src={user.profilePic} alt="" />
             ) : (<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDJxpGqOGix5cj6scskZqfRExzdyUhVDQygA&usqp=CAU" alt="" />)
           }
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus, ad veniam voluptatibus rerum consectetur in eius cum, quod accusamus, officia voluptas excepturi deserunt neque pariatur dolore nihil architecto possimus ullam?</p>
