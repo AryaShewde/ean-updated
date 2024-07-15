@@ -10,31 +10,22 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from './context/Context.js';
 import About from './pages/about/About.jsx';
 import { ContactUs } from './components/contact/Contact.jsx';
 
 function App() {
   const { user } = useContext(Context);
-  const [shouldReload, setShouldReload] = useState(false);
 
   useEffect(() => {
     const hasVisitedBefore = sessionStorage.getItem('hasVisitedBefore');
 
     if (!hasVisitedBefore) {
       sessionStorage.setItem('hasVisitedBefore', 'true');
-      setShouldReload(true);
     }
   }, []);
 
-  useEffect(() => {
-    if (shouldReload) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    }
-  }, [shouldReload]);
   // useEffect(() => {
   //   sessionStorage.getItem('hasVisited');
 
